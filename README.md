@@ -21,7 +21,7 @@
 * Various other extensions (like SimpleXML)
 * MySQL CLI
 
-This image is built on GitHub actions and hosted on the GitHub Docker images repo. It is also available under `khromov/alpine-nginx-php8` on [Docker Hub](https://hub.docker.com/r/khromov/alpine-nginx-php8).
+This image is built on GitHub actions and hosted on the GitHub Docker images repo. It is also available under `extralam/alpine-nginx-php8` on [Docker Hub](https://hub.docker.com/r/extralam/alpine-nginx-php8).
 
 ### Usage
 
@@ -30,12 +30,12 @@ Fetch the prebuilt image in your custom images:
 Docker Hub:
 
 ```
-docker pull khromov/alpine-nginx-php8
+docker pull extralam/alpine-nginx-php8
 ```
 
 GitHub:
 ```
-docker pull docker.pkg.github.com/khromov/alpine-nginx-php8/alpine-nginx-php8
+docker pull docker.pkg.github.com/extralam/alpine-nginx-php8/alpine-nginx-php8
 ```
 
 If you get "no basic auth credentials", see [this page](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages).

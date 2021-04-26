@@ -1,5 +1,5 @@
 FROM php:8.0.3-fpm-alpine
-LABEL Maintainer="Stanislav Khromov <stanislav+github@khromov.se>" \
+LABEL Maintainer="Alan Lam <certain603@gmail.com>" \
   Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
 
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php

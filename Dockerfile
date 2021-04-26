@@ -1,4 +1,5 @@
 FROM php:8.0.3-fpm-alpine
+
 LABEL Maintainer="Alan Lam <certain603@gmail.com>" \
   Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
 
@@ -12,7 +13,7 @@ ENV PKG_RELEASE   1
 # Install packages and remove default server definition
 RUN set -x && \
   apk update && apk upgrade && \
-  apk add --no-cache nginx supervisor curl tzdata htop mysql-client
+  apk add --no-cache execline nginx supervisor curl tzdata htop mysql-client busybox-suid
 
 RUN rm /etc/nginx/conf.d/default.conf
 
@@ -42,18 +43,21 @@ RUN chown -R nobody.nobody /var/www/html && \
   chown -R nobody.nobody /var/lib/nginx && \
   chown -R nobody.nobody /var/log/nginx
 
-# Switch to use a non-root user from here on
-USER nobody
+COPY scripts/start.sh /start.sh
+RUN chmod 0755 /start.sh
 
 # Add application
+COPY src/ /var/www/html/
 WORKDIR /var/www/html
-COPY --chown=nobody src/ /var/www/html/
+
+# Switch to use a non-root user from here on
+USER nobody
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
 
 # Let supervisord start nginx & php-fpm
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD [ "sh" , "/start.sh"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping

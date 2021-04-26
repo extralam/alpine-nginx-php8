@@ -15,6 +15,8 @@ RUN set -x && \
   apk update && apk upgrade && \
   apk add --no-cache execline nginx supervisor curl tzdata htop mysql-client busybox-suid
 
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Symlink php8 => php
@@ -38,10 +40,10 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/www/html
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html && \
-  chown -R nobody.nobody /run && \
-  chown -R nobody.nobody /var/lib/nginx && \
-  chown -R nobody.nobody /var/log/nginx
+# RUN chown -R nobody.nobody /var/www/html && \
+#   chown -R nobody.nobody /run && \
+#   chown -R nobody.nobody /var/lib/nginx && \
+#   chown -R nobody.nobody /var/log/nginx
 
 COPY scripts/start.sh /start.sh
 RUN chmod 0755 /start.sh
@@ -51,7 +53,7 @@ COPY src/ /var/www/html/
 WORKDIR /var/www/html
 
 # Switch to use a non-root user from here on
-USER nobody
+# USER nobody
 
 # Expose the port nginx is reachable on
 EXPOSE 8080

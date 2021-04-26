@@ -1,37 +1,19 @@
-FROM alpine:3.13
+FROM php:8.0.3-fpm-alpine
 LABEL Maintainer="Stanislav Khromov <stanislav+github@khromov.se>" \
-      Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
+  Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
 
-ARG PHP_VERSION="8.0.2-r0"
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community gnu-libiconv
+
+ENV NGINX_VERSION 1.18.0
+ENV NJS_VERSION   0.4.2
+ENV PKG_RELEASE   1
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php8=${PHP_VERSION} \
-    php8-ctype \
-    php8-curl \
-    php8-dom \
-    php8-exif \
-    php8-fileinfo \
-    php8-fpm \
-    php8-gd \
-    php8-iconv \
-    php8-intl \
-    php8-mbstring \
-    php8-mysqli \
-    php8-opcache \
-    php8-openssl \
-    php8-pecl-imagick \
-    php8-pecl-redis \
-    php8-phar \
-    php8-session \
-    php8-simplexml \
-    php8-soap \
-    php8-soap \
-    php8-xml \
-    php8-xmlreader \
-    php8-zip \
-    php8-zlib \
-    nginx supervisor curl tzdata htop mysql-client
-    
+RUN set -x && \
+  apk update && apk upgrade && \
+  apk add --no-cache nginx supervisor curl tzdata htop mysql-client
+
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Symlink php8 => php

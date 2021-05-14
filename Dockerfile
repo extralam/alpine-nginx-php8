@@ -1,4 +1,4 @@
-FROM php:8.0.3-fpm-alpine
+FROM php:8.0.6-fpm-alpine
 
 LABEL Maintainer="Alan Lam <certain603@gmail.com>" \
   Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
@@ -13,9 +13,10 @@ ENV PKG_RELEASE   1
 # Install packages and remove default server definition
 RUN set -x && \
   apk update && apk upgrade && \
-  apk add --no-cache execline nginx supervisor curl tzdata htop mysql-client busybox-suid
+  apk add --no-cache execline nginx supervisor curl tzdata htop mysql-client busybox-suid libzip-dev zip libsodium-dev libpng-dev
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql sodium zip gd
 
 RUN rm /etc/nginx/conf.d/default.conf
 

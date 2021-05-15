@@ -13,10 +13,11 @@ ENV PKG_RELEASE   1
 # Install packages and remove default server definition
 RUN set -x && \
   apk update && apk upgrade && \
-  apk add --no-cache execline nginx supervisor curl tzdata htop mysql-client busybox-suid libzip-dev zip libsodium-dev libpng-dev
+  apk add --no-cache execline gcc make g++ zlib-dev autoconf nginx supervisor curl tzdata htop mysql-client busybox-suid libzip-dev zip libsodium-dev libpng-dev
 
+RUN docker-php-ext-install pcntl mysqli pdo pdo_mysql sodium zip gd redis
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql sodium zip gd
+RUN pecl install redis
 
 RUN rm /etc/nginx/conf.d/default.conf
 

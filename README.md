@@ -1,7 +1,7 @@
 # Docker PHP-FPM 8.0 & Nginx 1.18 on Alpine Linux
 
 * Built on the lightweight and secure Alpine Linux distribution
-* Very small Docker image size (+/-35MB)
+* Very small Docker image size 
 * Uses PHP 8 for better performance, lower CPU usage & memory footprint
 * Optimized for 100 concurrent users
 * Optimized to only use resources when there's traffic (by using PHP-FPM's on-demand PM)
@@ -53,7 +53,7 @@ Now you can access your site at http://localhost:8080 and the MySQL database at 
 The folder `./src-compose` will be created and you can put your project files there.
 
 The urls are:
-* Web: http://localhost:8080
+* Web: http://localhost:80
 * phpMyAdmin: http://localhost:8081
 
 ###### File permission issues
@@ -71,11 +71,11 @@ This makes sure that the files have the correct owner inside the container but r
 
 ```
 docker build . -t php 
-docker run -p 8080:8080 -t php
+docker run -p 80:80 -t php
 ```
 
 Go to:  
-http://localhost:8080/
+http://localhost/
 
 ## Configuration
 In [config/](config/) you'll find the default configuration files for Nginx, PHP and PHP-FPM.

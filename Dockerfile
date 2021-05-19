@@ -33,7 +33,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /usr/local/etc/php-fpm.d/www.conf
+# COPY config/fpm-pool.conf /usr/local/etc/php-fpm.d/www.conf
 COPY config/php.ini /usr/local/etc/php/conf.d/custom.ini
 
 # Configure supervisord

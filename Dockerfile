@@ -15,7 +15,11 @@ RUN set -x && \
   apk update && apk upgrade && \
   apk add --no-cache execline gcc make g++ zlib-dev autoconf nginx supervisor curl tzdata htop mysql-client busybox-suid libzip-dev zip libsodium-dev libpng-dev
 
-RUN docker-php-ext-install pcntl mysqli pdo pdo_mysql sodium zip gd
+RUN docker-php-ext-install pcntl mysqli pdo pdo_mysql sodium zip
+
+RUN apk add jpeg-dev libpng-dev \
+  && docker-php-ext-configure gd --with-jpeg \
+  && docker-php-ext-install -j$(nproc) gd
 
 RUN pecl install redis \
   && docker-php-ext-enable redis

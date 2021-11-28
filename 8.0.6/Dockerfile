@@ -1,4 +1,4 @@
-FROM php:8.0.13-fpm-alpine3.14
+FROM php:8.0.6-fpm-alpine
 
 LABEL Maintainer="Alan Lam <certain603@gmail.com>" \
   Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."

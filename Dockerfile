@@ -24,7 +24,8 @@ RUN apk add jpeg-dev libpng-dev \
 RUN pecl install redis \
   && docker-php-ext-enable redis
 
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/http.d/default.conf
+RUN mkdir /etc/nginx/config.d
 
 # Symlink php8 => php
 RUN ln -s /usr/bin/php8 /usr/bin/php

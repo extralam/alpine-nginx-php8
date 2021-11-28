@@ -13,6 +13,13 @@
 ![php 8](https://img.shields.io/badge/php-8-brightgreen.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
+### Versioning
+| Docker Tag | Git Release | Nginx Version | PHP Version | Alpine Version |
+|-----|-------|-----|--------|--------|
+| latest/8.0.13 | Master Branch |1.18.0 | 8.0.13 | 3.14 |
+| 8.0.6 | Master Branch |1.18.0 | 8.0.6 | 3.12 |
+
+
 ### Includes
 
 * Composer

@@ -1,4 +1,4 @@
-FROM php:8.1-rc-fpm-alpine3.14
+FROM php:8.0.13-fpm-alpine3.14
 
 LABEL Maintainer="Alan Lam <certain603@gmail.com>" \
   Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
@@ -6,7 +6,7 @@ LABEL Maintainer="Alan Lam <certain603@gmail.com>" \
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community gnu-libiconv
 
-ENV NGINX_VERSION 1.20.0
+ENV NGINX_VERSION 1.18.0
 ENV NJS_VERSION   0.4.2
 ENV PKG_RELEASE   1
 

@@ -16,7 +16,7 @@
 ### Versioning
 | Docker Tag | Git Release | Nginx Version | PHP Version | Alpine Version |
 |-----|-------|-----|--------|--------|
-| latest/8.1 | Master Branch |1.20.0 | 8.0.13 | 3.15 |
+| latest/8.1.0 | Master Branch |1.20.0 | 8.0.13 | 3.15 |
 | 8.1.0RC6 | Master Branch |1.20.0 | 8.1.0RC6 | 3.14 |
 | 8.0.13 | Master Branch |1.18.0 | 8.0.13 | 3.14 |
 | release-8.0.6 | Master Branch |1.18.0 | 8.0.6 | 3.12 |
